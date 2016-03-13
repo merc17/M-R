@@ -16,7 +16,7 @@ public class Series {
     private String series_id;
     private List<Character> record;
 
-    Series() {
+    public Series() {
 
     }
 }
