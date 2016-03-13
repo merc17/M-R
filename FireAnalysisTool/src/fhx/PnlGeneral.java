@@ -6,7 +6,11 @@
 
 package fhx;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
 
@@ -237,8 +241,20 @@ public class PnlGeneral extends javax.swing.JPanel
    }//GEN-LAST:event_txtFolderPathActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        FireHistoryFile fhf = new FireHistoryFile();
-        Date startData = new Date();
+       try {
+           SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+           String dateStartString = cbxStartDay.getSelectedItem() + "-" + cbxStartMonth + "-" + spnStartYear.getValue().toString();
+           Date startData = sdf.parse(dateStartString);
+           String dateEndString = cbxEndDay.getSelectedItem() + "-" + cbxEndMonth + "-" + spnEndYear.getValue().toString();
+           Date endData = sdf.parse(dateEndString);
+           
+           
+           //TODO: Create a new file object
+           //FireHistory fhf = new FireHistory(startData, endData, spnSamples.getValue(), );
+           
+       } catch (ParseException ex) {
+           Logger.getLogger(PnlGeneral.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
