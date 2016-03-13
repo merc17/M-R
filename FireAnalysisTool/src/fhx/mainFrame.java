@@ -135,6 +135,11 @@ public class mainFrame extends javax.swing.JFrame {
         jMenu1.add(jMenuItem4);
 
         jMenuItem5.setText("Import File");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem5);
 
         jMenuItem2.setText("Exit");
@@ -181,6 +186,10 @@ public class mainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.tabs.setSelectedIndex(indexOfNewTab);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
 //   /**
 //    @param args the command line arguments
