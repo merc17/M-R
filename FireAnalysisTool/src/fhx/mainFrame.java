@@ -26,7 +26,6 @@ public class mainFrame extends javax.swing.JFrame {
         pnlWelcome.removeAll();
         homePanel = new PnlHome();
         pnlWelcome.add(homePanel);
-        homePanel.setSize(514, 118);
         homePanel.setVisible(true);
         pnlWelcome.revalidate();
         pnlWelcome.repaint();
@@ -34,7 +33,6 @@ public class mainFrame extends javax.swing.JFrame {
         pnlNew.removeAll();
         pnlGeneral = new PnlGeneral();
         pnlNew.add(pnlGeneral);
-        pnlGeneral.setSize(400, 400);
         pnlGeneral.setVisible(true);
         pnlNew.revalidate();
         pnlNew.repaint();
@@ -71,6 +69,10 @@ public class mainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        pnlWelcome.setPreferredSize(new java.awt.Dimension(980, 500));
+        pnlWelcome.setRequestFocusEnabled(false);
+        pnlWelcome.setSize(new java.awt.Dimension(980, 500));
+
         jTextPane2.setEditable(false);
         jTextPane2.setText("Directions on how to use our software will be added here!!\n\n\nTo create a new sample select \"File->New Sample\"");
         jScrollPane3.setViewportView(jTextPane2);
@@ -87,7 +89,7 @@ public class mainFrame extends javax.swing.JFrame {
         pnlWelcomeLayout.setVerticalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap(224, Short.MAX_VALUE)
+                .addContainerGap(197, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
@@ -102,7 +104,7 @@ public class mainFrame extends javax.swing.JFrame {
         );
         pnlNewLayout.setVerticalGroup(
             pnlNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 479, Short.MAX_VALUE)
+            .addGap(0, 452, Short.MAX_VALUE)
         );
 
         tabs.addTab("New", pnlNew);
@@ -111,11 +113,11 @@ public class mainFrame extends javax.swing.JFrame {
         pnlMain.setLayout(pnlMainLayout);
         pnlMainLayout.setHorizontalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs)
+            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs)
+            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
         );
 
         jMenu1.setText("File");

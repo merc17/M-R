@@ -23,6 +23,7 @@ public class PnlFile extends javax.swing.JPanel
       pnlEditSiteData = new PnlEditSitesData();
       pnlHistData.removeAll();
       pnlHistData.add(pnlEditSiteData);
+      pnlEditSiteData.setSize(975, 500);
       pnlEditSiteData.setVisible(true);
       pnlHistData.revalidate();
       pnlHistData.repaint();
@@ -31,7 +32,7 @@ public class PnlFile extends javax.swing.JPanel
       pnlEditSiteInfo = new PnlEditSiteInfo();
       pnlInfo.removeAll();
       pnlInfo.add(pnlEditSiteInfo);
-      this.setSize(pnlEditSiteInfo.getWidth(),pnlEditSiteInfo.getHeight());
+      pnlEditSiteInfo.setSize(850, 450);
       pnlEditSiteInfo.setVisible(true);
       pnlInfo.revalidate();
       pnlInfo.repaint();
@@ -50,6 +51,11 @@ public class PnlFile extends javax.swing.JPanel
         pnlHistData = new javax.swing.JPanel();
         pnlInfo = new javax.swing.JPanel();
 
+        setSize(new java.awt.Dimension(931, 534));
+
+        jTabbedPane3.setSize(new java.awt.Dimension(984, 589));
+
+        pnlHistData.setMinimumSize(new java.awt.Dimension(984, 589));
         pnlHistData.setPreferredSize(new java.awt.Dimension(963, 543));
 
         javax.swing.GroupLayout pnlHistDataLayout = new javax.swing.GroupLayout(pnlHistData);
@@ -65,15 +71,17 @@ public class PnlFile extends javax.swing.JPanel
 
         jTabbedPane3.addTab("Fire History Data", pnlHistData);
 
+        pnlInfo.setMinimumSize(new java.awt.Dimension(984, 589));
+
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
         pnlInfoLayout.setHorizontalGroup(
             pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 914, Short.MAX_VALUE)
+            .addGap(0, 984, Short.MAX_VALUE)
         );
         pnlInfoLayout.setVerticalGroup(
             pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
+            .addGap(0, 589, Short.MAX_VALUE)
         );
 
         jTabbedPane3.addTab("Site Information", pnlInfo);
@@ -86,12 +94,12 @@ public class PnlFile extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
-                .addGap(32, 32, 32))
+                .addComponent(jTabbedPane3)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addComponent(jTabbedPane3)
         );
     }// </editor-fold>//GEN-END:initComponents
 
