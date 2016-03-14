@@ -23,7 +23,6 @@ public class PnlFile extends javax.swing.JPanel
       pnlEditSiteData = new PnlEditSitesData();
       pnlHistData.removeAll();
       pnlHistData.add(pnlEditSiteData);
-      pnlEditSiteData.setSize(975, 485);
       pnlEditSiteData.setVisible(true);
       pnlHistData.revalidate();
       pnlHistData.repaint();
@@ -32,7 +31,7 @@ public class PnlFile extends javax.swing.JPanel
       pnlEditSiteInfo = new PnlEditSiteInfo();
       pnlInfo.removeAll();
       pnlInfo.add(pnlEditSiteInfo);
-      pnlEditSiteInfo.setSize(850, 450);
+      this.setSize(pnlEditSiteInfo.getWidth(),pnlEditSiteInfo.getHeight());
       pnlEditSiteInfo.setVisible(true);
       pnlInfo.revalidate();
       pnlInfo.repaint();
