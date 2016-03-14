@@ -7,6 +7,7 @@ package fhx;
 
 import java.util.ArrayList;
 import java.util.List;
+import firehistory.*;
 
 /**
  *
@@ -17,6 +18,7 @@ public class mainFrame extends javax.swing.JFrame {
     private PnlHome homePanel;
     private PnlGeneral pnlGeneral;
     private List<PnlFile> files;
+    private FireHistory f;
 
     /**
      * Creates new form mainFrame
@@ -42,6 +44,7 @@ public class mainFrame extends javax.swing.JFrame {
         files = new ArrayList<>();
         addPanel("String");
         addPanel("Test");
+        f = new FireHistory();
         
     }
 
@@ -261,7 +264,7 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void addPanel(String title) {
         tabs.remove(indexOfNewTab);
-        PnlFile tmp = new PnlFile();
+        PnlFile tmp = new PnlFile(f);
         files.add(tmp);
         tabs.addTab(title, tmp);
         //Icon icon = new MetalIconFactory.PaletteCloseIcon();
