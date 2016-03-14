@@ -5,6 +5,7 @@
  */
 
 package fhx;
+import firehistory.*;
 
 /**
 
@@ -13,12 +14,16 @@ package fhx;
 public class PnlEditSiteInfo extends javax.swing.JPanel
 {
 
+   private FireHistory f;
+   private Series s;
    /**
     Creates new form pnl_wiz_start
     */
-   public PnlEditSiteInfo()
+   public PnlEditSiteInfo(FireHistory inF, Series inS)
    {
       initComponents();
+      f = inF;
+      s = inS;
    }
 
    /**

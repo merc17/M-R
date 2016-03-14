@@ -15,6 +15,7 @@ import java.util.List;
 public class FireHistory {
 
     private String file_name;
+    private String folder_name;
 
     private String name_of_site;
     private String site_code;
@@ -61,6 +62,17 @@ public class FireHistory {
     public FireHistory() 
     {
         ReadFile("C:\\Users\\Zac\\Documents\\NetBeansProjects\\M-R\\TopTest.fhx");
+    }
+    
+    public void ChangeBasicSiteInfo(String[] s)
+    {
+        begin_year = s[0];
+        end_year = s[1];
+        number_of_samples = s[2];
+        id_length = s[3];
+        file_name = s[4];
+        folder_name = s[5];
+        
     }
     
     private void ReadFile(String fileName)

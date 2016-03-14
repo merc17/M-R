@@ -12,15 +12,16 @@ import firehistory.*;
  */
 public class PnlEditSitesData extends javax.swing.JPanel
 {
-
+   private FireHistory f;
+   private Series s;
    /**
     Creates new form pnl_edit_sites_data
     */
-   public PnlEditSitesData()
+   public PnlEditSitesData(FireHistory inF, Series inS)
    {
       initComponents();
-      Series s;
-      s = new Series();
+      f = inF;
+      s = inS;
    }
 
    /**
@@ -125,7 +126,7 @@ public class PnlEditSitesData extends javax.swing.JPanel
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel11)))
-                        .addGap(135, 135, 135)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)

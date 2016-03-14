@@ -5,7 +5,7 @@
  */
 
 package fhx;
-
+import firehistory.*;
 /**
 
  @author gerhardyz
@@ -14,13 +14,15 @@ public class PnlFile extends javax.swing.JPanel
 {
    private PnlEditSitesData pnlEditSiteData;
    private PnlEditSiteInfo pnlEditSiteInfo;
+   private FireHistory f;
+   private Series s;
    /**
     Creates new form pnl_file
     */
-   public PnlFile()
+   public PnlFile(FireHistory f)
    {
       initComponents();
-      pnlEditSiteData = new PnlEditSitesData();
+      pnlEditSiteData = new PnlEditSitesData(f, s);
       pnlHistData.removeAll();
       pnlHistData.add(pnlEditSiteData);
       pnlEditSiteData.setSize(975, 485);
@@ -29,7 +31,7 @@ public class PnlFile extends javax.swing.JPanel
       pnlHistData.repaint();
       
       
-      pnlEditSiteInfo = new PnlEditSiteInfo();
+      pnlEditSiteInfo = new PnlEditSiteInfo(f, s);
       pnlInfo.removeAll();
       pnlInfo.add(pnlEditSiteInfo);
       pnlEditSiteInfo.setSize(850, 450);

@@ -5,12 +5,12 @@
  */
 
 package fhx;
-
+import java.util.*;
+import java.io.*;
+import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import firehistory.*;
 
 /**
 
@@ -18,6 +18,9 @@ import java.util.logging.Logger;
  */
 public class PnlGeneral extends javax.swing.JPanel
 {
+   private PnlFile pnlFile;
+   private FireHistory f;
+   private Series s;
    /**
     Creates new form pnl_general
     */
@@ -51,7 +54,7 @@ public class PnlGeneral extends javax.swing.JPanel
         btnSelect = new javax.swing.JButton();
         txtFolderPath = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(400, 360));
 
@@ -89,10 +92,10 @@ public class PnlGeneral extends javax.swing.JPanel
 
         jLabel7.setText("Folder Name:");
 
-        btnSave.setText("Save");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -101,46 +104,49 @@ public class PnlGeneral extends javax.swing.JPanel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2)
-                .addGap(84, 84, 84)
-                .addComponent(spnStartYear, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel3)
-                .addGap(92, 92, 92)
-                .addComponent(spnEndYear, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(spnSamples, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(cbxIDLength, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel6)
-                .addGap(20, 20, 20)
-                .addComponent(txtFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel7)
-                .addGap(6, 6, 6)
-                .addComponent(txtFolderPath, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2)
+                        .addGap(84, 84, 84)
+                        .addComponent(spnStartYear, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3)
+                        .addGap(92, 92, 92)
+                        .addComponent(spnEndYear, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(spnSamples, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxIDLength, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel6)
+                        .addGap(20, 20, 20)
+                        .addComponent(txtFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel7)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtFolderPath, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,14 +194,22 @@ public class PnlGeneral extends javax.swing.JPanel
                         .addGap(3, 3, 3)
                         .addComponent(txtFolderPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSelect))
-                .addGap(18, 18, 18)
-                .addComponent(btnSave))
+                .addGap(28, 28, 28)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSelectActionPerformed
    {//GEN-HEADEREND:event_btnSelectActionPerformed
-      // TODO add your handling code here:
+      JFileChooser fc = new JFileChooser();
+      fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+      int result = fc.showOpenDialog(this);
+      if (result == JFileChooser.APPROVE_OPTION)
+      {
+          File selectedFile = fc.getSelectedFile();
+          txtFolderPath.setText(selectedFile.getAbsolutePath());
+      }
    }//GEN-LAST:event_btnSelectActionPerformed
 
    private void txtFileNameActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtFileNameActionPerformed
@@ -208,28 +222,24 @@ public class PnlGeneral extends javax.swing.JPanel
       // TODO add your handling code here:
    }//GEN-LAST:event_txtFolderPathActionPerformed
 
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-       try {
-           SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-           String dateStartString = spnStartYear.getValue().toString();
-           Date startData = sdf.parse(dateStartString);
-           String dateEndString = spnEndYear.getValue().toString();
-           Date endData = sdf.parse(dateEndString);
-           
-           
-           //TODO: Create a new file object
-           //FireHistory fhf = new FireHistory(startData, endData, spnSamples.getValue(), );
-           
-       } catch (ParseException ex) {
-           Logger.getLogger(PnlGeneral.class.getName()).log(Level.SEVERE, null, ex);
-       }
-    }//GEN-LAST:event_btnSaveActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String[] temp = new String[6];
+        temp[0] = spnStartYear.getValue().toString();
+        temp[1] = spnEndYear.getValue().toString();
+        temp[2] = spnSamples.getValue().toString();
+        temp[3] = cbxIDLength.getSelectedItem().toString();
+        temp[4] = txtFileName.getText();
+        temp[5] = txtFolderPath.getText();
+        f.ChangeBasicSiteInfo(temp);
+        pnlFile = new PnlFile(f);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSelect;
     private javax.swing.JComboBox cbxIDLength;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
