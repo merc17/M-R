@@ -5,8 +5,12 @@
  */
 package fhx;
 
+import firehistory.*;
+
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
+import java.io.File;  
 
 /**
  *
@@ -17,12 +21,16 @@ public class mainFrame extends javax.swing.JFrame {
     private PnlHome homePanel;
     private PnlGeneral pnlGeneral;
     private List<PnlFile> files;
+    private FireHistory fireHist;
 
     /**
      * Creates new form mainFrame
      */
     public mainFrame() {
         initComponents();
+        
+        fireHist = new FireHistory();
+        
         pnlWelcome.removeAll();
         homePanel = new PnlHome();
         pnlWelcome.add(homePanel);
@@ -132,6 +140,11 @@ public class mainFrame extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Export File");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuItem5.setText("Import File");
@@ -188,8 +201,23 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        if (fileChooser.showOpenDialog(jMenu1) == JFileChooser.APPROVE_OPTION)
+        {
+            fireHist.OpenFile(fileChooser.getSelectedFile().getAbsolutePath());
+        }
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(jMenu1) == JFileChooser.APPROVE_OPTION)
+        {
+            fireHist.SaveFile(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
 //   /**
 //    @param args the command line arguments
