@@ -1,7 +1,0 @@
-Fire History Man Page
-
-Params
-=============================
--d [file_path] => Print out the file
--c             => Create New Fire History
--h             => Display the Man Page

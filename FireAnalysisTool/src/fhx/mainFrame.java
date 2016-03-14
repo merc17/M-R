@@ -34,7 +34,7 @@ public class mainFrame extends javax.swing.JFrame {
         pnlNew.removeAll();
         pnlGeneral = new PnlGeneral();
         pnlNew.add(pnlGeneral);
-        pnlGeneral.setSize(400, 260);
+        pnlGeneral.setSize(400, 400);
         pnlGeneral.setVisible(true);
         pnlNew.revalidate();
         pnlNew.repaint();

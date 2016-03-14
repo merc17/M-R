@@ -62,6 +62,8 @@ public class PnlEditSitesData extends javax.swing.JPanel
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(0, 0));
+
         jLabel1.setText("Data being entered for identification number XXX");
 
         jLabel2.setText("Site Name:");
