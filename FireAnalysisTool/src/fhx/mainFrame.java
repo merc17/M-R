@@ -28,6 +28,7 @@ public class mainFrame extends javax.swing.JFrame {
         pnlWelcome.removeAll();
         homePanel = new PnlHome();
         pnlWelcome.add(homePanel);
+        homePanel.setSize(530, 200);
         homePanel.setVisible(true);
         pnlWelcome.revalidate();
         pnlWelcome.repaint();
@@ -35,6 +36,7 @@ public class mainFrame extends javax.swing.JFrame {
         pnlNew.removeAll();
         pnlGeneral = new PnlGeneral();
         pnlNew.add(pnlGeneral);
+        pnlGeneral.setSize(450, 300);
         pnlGeneral.setVisible(true);
         pnlNew.revalidate();
         pnlNew.repaint();
@@ -43,6 +45,7 @@ public class mainFrame extends javax.swing.JFrame {
         
         f = new ArrayList<>();
         
+        addPanel("Test", new FireHistory());
     }
 
     /**

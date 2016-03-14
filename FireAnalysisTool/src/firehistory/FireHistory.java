@@ -58,9 +58,14 @@ public class FireHistory {
     /**
      *
      */
+    public FireHistory(String filePath) 
+    {
+        ReadFile(filePath);
+    }
+    
     public FireHistory() 
     {
-        ReadFile("C:\\Users\\Zac\\Documents\\NetBeansProjects\\M-R\\TopTest.fhx");
+        
     }
     
     private void ReadFile(String fileName)
