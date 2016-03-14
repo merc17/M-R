@@ -6,6 +6,8 @@
 
 package fhx;
 
+import firehistory.FireHistory;
+
 /**
 
  @author gerhardyz
@@ -17,7 +19,7 @@ public class PnlFile extends javax.swing.JPanel
    /**
     Creates new form pnl_file
     */
-   public PnlFile()
+   public PnlFile(FireHistory f)
    {
       initComponents();
       pnlEditSiteData = new PnlEditSitesData();

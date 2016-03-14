@@ -18,7 +18,7 @@ public class mainFrame extends javax.swing.JFrame {
     private PnlHome homePanel;
     private PnlGeneral pnlGeneral;
     private List<PnlFile> files;
-    private FireHistory f;
+    private List<FireHistory> f;
 
     /**
      * Creates new form mainFrame
@@ -42,9 +42,8 @@ public class mainFrame extends javax.swing.JFrame {
         pnlNew.repaint();
 
         files = new ArrayList<>();
-        addPanel("String");
-        addPanel("Test");
-        f = new FireHistory();
+        
+        f = new ArrayList<>();
         
     }
 
@@ -262,9 +261,11 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
 
-    private void addPanel(String title) {
+    private void addPanel(String title, FireHistory fireHistory) {
+        f.add(fireHistory);
+        int index = f.indexOf(fireHistory);
         tabs.remove(indexOfNewTab);
-        PnlFile tmp = new PnlFile(f);
+        PnlFile tmp = new PnlFile(f.get(index));
         files.add(tmp);
         tabs.addTab(title, tmp);
         //Icon icon = new MetalIconFactory.PaletteCloseIcon();
