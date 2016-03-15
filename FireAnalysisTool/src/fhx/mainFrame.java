@@ -21,9 +21,8 @@ public class mainFrame extends javax.swing.JFrame {
     private int indexOfNewTab = 1;
     private PnlHome homePanel;
     private PnlGeneral pnlGeneral;
-    private List<PnlFile> files;
     private List<FireHistory> f;
-    private FireHistory fireHist;
+   // private FireHistory fireHist;
 
     /**
      * Creates new form mainFrame
@@ -40,18 +39,15 @@ public class mainFrame extends javax.swing.JFrame {
         pnlWelcome.repaint();
 
         pnlNew.removeAll();
-        pnlGeneral = new PnlGeneral();
+        pnlGeneral = new PnlGeneral(this);
         pnlNew.add(pnlGeneral);
-        pnlGeneral.setSize(450, 300);
+        pnlGeneral.setSize(450, 450);
         pnlGeneral.setVisible(true);
         pnlNew.revalidate();
         pnlNew.repaint();
-
-        files = new ArrayList<>();
         
         f = new ArrayList<>();
-        
-        addPanel("Test", new FireHistory());
+
     }
 
     /**
@@ -82,7 +78,6 @@ public class mainFrame extends javax.swing.JFrame {
 
         pnlWelcome.setPreferredSize(new java.awt.Dimension(980, 500));
         pnlWelcome.setRequestFocusEnabled(false);
-        pnlWelcome.setSize(new java.awt.Dimension(980, 500));
 
         jTextPane2.setEditable(false);
         jTextPane2.setText("Directions on how to use our software will be added here!!\n\n\nTo create a new sample select \"File->New Sample\"");
@@ -93,16 +88,16 @@ public class mainFrame extends javax.swing.JFrame {
         pnlWelcomeLayout.setHorizontalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap(488, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addContainerGap(452, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
         );
         pnlWelcomeLayout.setVerticalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap(197, Short.MAX_VALUE)
+                .addContainerGap(172, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGap(90, 90, 90))
         );
 
         tabs.addTab("Welcome", pnlWelcome);
@@ -210,17 +205,20 @@ public class mainFrame extends javax.swing.JFrame {
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         if (fileChooser.showOpenDialog(jMenu1) == JFileChooser.APPROVE_OPTION)
         {
-            fireHist.OpenFile(fileChooser.getSelectedFile().getAbsolutePath());
+            FireHistory fireHistory = new FireHistory(fileChooser.getSelectedFile().getAbsolutePath());
+            addFireHistoryTab(fireHistory);
         }
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        int position = tabs.getSelectedIndex();
         
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showSaveDialog(jMenu1) == JFileChooser.APPROVE_OPTION)
         {
-            fireHist.SaveFile(fileChooser.getSelectedFile().getAbsolutePath());
+            ((PnlFile)tabs.getTabComponentAt(position)).saveFireHistory();
+            //fireHist.SaveFile(fileChooser.getSelectedFile().getAbsolutePath());
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -291,19 +289,28 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel pnlWelcome;
     private javax.swing.JTabbedPane tabs;
     // End of variables declaration//GEN-END:variables
-
-    private void addPanel(String title, FireHistory fireHistory) {
-        f.add(fireHistory);
-        int index = f.indexOf(fireHistory);
+//
+//    private void addPanel(String title, FireHistory fireHistory) {
+//        f.add(fireHistory);
+//        int index = f.indexOf(fireHistory);
+//        tabs.remove(indexOfNewTab);
+//        PnlFile tmp = new PnlFile(f.get(index));
+//        files.add(tmp);
+//        tabs.addTab(title, tmp);
+//        //Icon icon = new MetalIconFactory.PaletteCloseIcon();
+//        //tabs.insertTab(title, icon, tmp, title, indexOfNewTab);
+//        tabs.add("New", pnlNew);
+//        indexOfNewTab++;
+//        
+//    }
+    
+    public void addFireHistoryTab(FireHistory fireHistory){
         tabs.remove(indexOfNewTab);
-        PnlFile tmp = new PnlFile(f.get(index));
-        files.add(tmp);
-        tabs.addTab(title, tmp);
-        //Icon icon = new MetalIconFactory.PaletteCloseIcon();
-        //tabs.insertTab(title, icon, tmp, title, indexOfNewTab);
+        PnlFile tmp = new PnlFile(fireHistory);
+        tabs.addTab(fireHistory.getName_of_site(), tmp);
         tabs.add("New", pnlNew);
         indexOfNewTab++;
-        
+        tabs.setSelectedIndex(indexOfNewTab);
     }
 
 }

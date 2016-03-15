@@ -125,9 +125,6 @@ public class PnlEditSiteInfo extends javax.swing.JPanel
         jLabel25 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(850, 450));
-        setSize(new java.awt.Dimension(850, 450));
-
-        jPanel1.setSize(new java.awt.Dimension(279, 486));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 2, 8)); // NOI18N
         jLabel8.setText("Max 70 Characters");
@@ -375,8 +372,6 @@ public class PnlEditSiteInfo extends javax.swing.JPanel
 
         jTextField1.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel2.setSize(new java.awt.Dimension(274, 486));
-
         jLabel14.setFont(new java.awt.Font("Tahoma", 2, 8)); // NOI18N
         jLabel14.setText("Max 70 Characters");
 
@@ -623,7 +618,6 @@ public class PnlEditSiteInfo extends javax.swing.JPanel
         );
 
         jPanel3.setPreferredSize(new java.awt.Dimension(274, 486));
-        jPanel3.setSize(new java.awt.Dimension(274, 486));
 
         jLabel42.setFont(new java.awt.Font("Tahoma", 2, 8)); // NOI18N
         jLabel42.setText("Max 70 Characters");
@@ -825,7 +819,7 @@ public class PnlEditSiteInfo extends javax.swing.JPanel
                     .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel44)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel47)
                     .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

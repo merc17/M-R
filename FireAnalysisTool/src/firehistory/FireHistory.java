@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  */
 public class FireHistory {
 
-    private String file_name;
-
+    private String file_path;
+    
     private String name_of_site;
     private String site_code;
     private String collection_date;
@@ -63,14 +63,26 @@ public class FireHistory {
      *
      */
     public FireHistory(String filePath) {
+        file_path = filePath;
         ReadFile(filePath);
     }
     
     public FireHistory() {
     }
+    
+    public FireHistory(String begining_year, String ending_year, String numberOfSamples, 
+            String SampleIDLength, String siteName, String fileName, String folderPath) {
+        begin_year = begining_year;
+        end_year = ending_year;
+        number_of_samples = numberOfSamples;
+        name_of_site = siteName;
+        id_length = SampleIDLength;
+        file_path = folderPath + "/" + fileName;
+    }
+
 
     public FireHistory(String filePath, Scanner user_input) {
-        file_name = getInput(user_input, "File Name");
+        file_path = filePath;//getInput(user_input, "File Name");
         name_of_site = getInput(user_input, "Name of Site");
         site_code = getInput(user_input, "Site Code");
         collection_date = getInput(user_input, "Collection Date");
@@ -117,7 +129,8 @@ public class FireHistory {
 
     private void ReadFile(String fileName) {
         try {
-            FileInputStream fStream = new FileInputStream(fileName);
+            file_path = fileName;
+            FileInputStream fStream = new FileInputStream(file_path);
             BufferedReader in = new BufferedReader(new InputStreamReader(fStream));
             String[] nextLine = new String[2];
             while (in.ready()) {
@@ -238,11 +251,11 @@ public class FireHistory {
         }
     }
 
-    public void SaveFile(String fileName) {
+    public void SaveFile() {
         FileOutputStream outFile;
         PrintStream printer;
         try {
-            outFile = new FileOutputStream(fileName);
+            outFile = new FileOutputStream(file_path);
             printer = new PrintStream(outFile);
             printer.println("Name of site   : " + name_of_site);
             printer.println("Site code      : " + site_code);
@@ -289,7 +302,8 @@ public class FireHistory {
      */
     public void OpenFile(String fileName) {
         try {
-            FileInputStream fStream = new FileInputStream(fileName);
+            file_path = fileName;
+            FileInputStream fStream = new FileInputStream(file_path);
             BufferedReader in = new BufferedReader(new InputStreamReader(fStream));
             String[] nextLine = new String[2];
             while (in.ready()) {
@@ -411,4 +425,295 @@ public class FireHistory {
         System.out.println("Ran succsess!");
 
     }
+    
+    public String getFile_path() {
+        return file_path;
+    }
+
+    public void setFile_path(String file_path) {
+        this.file_path = file_path;
+    }
+
+    public String getName_of_site() {
+        return name_of_site;
+    }
+
+    public void setName_of_site(String name_of_site) {
+        this.name_of_site = name_of_site;
+    }
+
+    public String getSite_code() {
+        return site_code;
+    }
+
+    public void setSite_code(String site_code) {
+        this.site_code = site_code;
+    }
+
+    public String getCollection_date() {
+        return collection_date;
+    }
+
+    public void setCollection_date(String collection_date) {
+        this.collection_date = collection_date;
+    }
+
+    public String getCollectors() {
+        return collectors;
+    }
+
+    public void setCollectors(String collectors) {
+        this.collectors = collectors;
+    }
+
+    public String getCrossdaters() {
+        return crossdaters;
+    }
+
+    public void setCrossdaters(String crossdaters) {
+        this.crossdaters = crossdaters;
+    }
+
+    public String getNumber_samples() {
+        return number_samples;
+    }
+
+    public void setNumber_samples(String number_samples) {
+        this.number_samples = number_samples;
+    }
+
+    public String getSpecies_name() {
+        return species_name;
+    }
+
+    public void setSpecies_name(String species_name) {
+        this.species_name = species_name;
+    }
+
+    public String getCommon_name() {
+        return common_name;
+    }
+
+    public void setCommon_name(String common_name) {
+        this.common_name = common_name;
+    }
+
+    public String getHabitat_type() {
+        return habitat_type;
+    }
+
+    public void setHabitat_type(String habitat_type) {
+        this.habitat_type = habitat_type;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getPark_monument() {
+        return park_monument;
+    }
+
+    public void setPark_monument(String park_monument) {
+        this.park_monument = park_monument;
+    }
+
+    public String getNational_forest() {
+        return national_forest;
+    }
+
+    public void setNational_forest(String national_forest) {
+        this.national_forest = national_forest;
+    }
+
+    public String getRanger_district() {
+        return ranger_district;
+    }
+
+    public void setRanger_district(String ranger_district) {
+        this.ranger_district = ranger_district;
+    }
+
+    public String getTownship() {
+        return township;
+    }
+
+    public void setTownship(String township) {
+        this.township = township;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public String getQuarter_section() {
+        return quarter_section;
+    }
+
+    public void setQuarter_section(String quarter_section) {
+        this.quarter_section = quarter_section;
+    }
+
+    public String getUtm_easting() {
+        return utm_easting;
+    }
+
+    public void setUtm_easting(String utm_easting) {
+        this.utm_easting = utm_easting;
+    }
+
+    public String getUtm_northing() {
+        return utm_northing;
+    }
+
+    public void setUtm_northing(String utm_northing) {
+        this.utm_northing = utm_northing;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getTopographic_map() {
+        return topographic_map;
+    }
+
+    public void setTopographic_map(String topographic_map) {
+        this.topographic_map = topographic_map;
+    }
+
+    public String getLowest_elev() {
+        return lowest_elev;
+    }
+
+    public void setLowest_elev(String lowest_elev) {
+        this.lowest_elev = lowest_elev;
+    }
+
+    public String getHighest_elev() {
+        return highest_elev;
+    }
+
+    public void setHighest_elev(String highest_elev) {
+        this.highest_elev = highest_elev;
+    }
+
+    public String getSlope() {
+        return slope;
+    }
+
+    public void setSlope(String slope) {
+        this.slope = slope;
+    }
+
+    public String getAspect() {
+        return aspect;
+    }
+
+    public void setAspect(String aspect) {
+        this.aspect = aspect;
+    }
+
+    public String getArea_sampled() {
+        return area_sampled;
+    }
+
+    public void setArea_sampled(String area_sampled) {
+        this.area_sampled = area_sampled;
+    }
+
+    public String getSubstrate_type() {
+        return substrate_type;
+    }
+
+    public void setSubstrate_type(String substrate_type) {
+        this.substrate_type = substrate_type;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getBegin_year() {
+        return begin_year;
+    }
+
+    public void setBegin_year(String begin_year) {
+        this.begin_year = begin_year;
+    }
+
+    public String getEnd_year() {
+        return end_year;
+    }
+
+    public void setEnd_year(String end_year) {
+        this.end_year = end_year;
+    }
+
+    public String getNumber_of_samples() {
+        return number_of_samples;
+    }
+
+    public void setNumber_of_samples(String number_of_samples) {
+        this.number_of_samples = number_of_samples;
+    }
+
+    public String getId_length() {
+        return id_length;
+    }
+
+    public void setId_length(String id_length) {
+        this.id_length = id_length;
+    }
+    
+    
+    
 }

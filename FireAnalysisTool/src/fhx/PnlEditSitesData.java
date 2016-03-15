@@ -12,15 +12,22 @@ import firehistory.*;
  */
 public class PnlEditSitesData extends javax.swing.JPanel
 {
-
+    FireHistory fireHistory;
    /**
     Creates new form pnl_edit_sites_data
+     * @param f
     */
-   public PnlEditSitesData()
+   public PnlEditSitesData(FireHistory f)
    {
+       fireHistory = f;
+      
       initComponents();
       Series s;
       s = new Series();
+      
+       String tmp =f.getName_of_site();
+       this.lblSiteName.setText(tmp);
+       this.repaint();
    }
 
    /**
@@ -42,7 +49,7 @@ public class PnlEditSitesData extends javax.swing.JPanel
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lblSiteName = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -63,7 +70,6 @@ public class PnlEditSitesData extends javax.swing.JPanel
         jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(894, 478));
-        setSize(new java.awt.Dimension(894, 478));
 
         jLabel1.setText("Data being entered for identification number XXX");
 
@@ -83,7 +89,7 @@ public class PnlEditSitesData extends javax.swing.JPanel
 
         jLabel10.setText("Number of Samples:");
 
-        jLabel11.setText("Yellowstone");
+        lblSiteName.setText("Yellowstone");
 
         jLabel12.setText("369");
 
@@ -125,7 +131,7 @@ public class PnlEditSitesData extends javax.swing.JPanel
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11)))
+                                .addComponent(lblSiteName)))
                         .addGap(135, 135, 135)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -157,7 +163,7 @@ public class PnlEditSitesData extends javax.swing.JPanel
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel11)
+                    .addComponent(lblSiteName)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -348,7 +354,6 @@ public class PnlEditSitesData extends javax.swing.JPanel
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -371,5 +376,6 @@ public class PnlEditSitesData extends javax.swing.JPanel
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel lblSiteName;
     // End of variables declaration//GEN-END:variables
 }

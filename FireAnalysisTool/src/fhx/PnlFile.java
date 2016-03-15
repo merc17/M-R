@@ -16,13 +16,16 @@ public class PnlFile extends javax.swing.JPanel
 {
    private PnlEditSitesData pnlEditSiteData;
    private PnlEditSiteInfo pnlEditSiteInfo;
+   FireHistory fireHistory;
    /**
     Creates new form pnl_file
     */
    public PnlFile(FireHistory f)
    {
       initComponents();
-      pnlEditSiteData = new PnlEditSitesData();
+      fireHistory = f;
+      pnlEditSiteData = new PnlEditSitesData(fireHistory);
+      //pnlEditSiteData.displayFireHistory(fireHistory);
       pnlHistData.removeAll();
       pnlHistData.add(pnlEditSiteData);
       pnlEditSiteData.setSize(975, 500);
@@ -39,7 +42,10 @@ public class PnlFile extends javax.swing.JPanel
       pnlInfo.revalidate();
       pnlInfo.repaint();
    }
-
+   
+   public void saveFireHistory(){
+       fireHistory.SaveFile();
+   }
    /**
     This method is called from within the constructor to initialize the form.
     WARNING: Do NOT modify this code. The content of this method is always
