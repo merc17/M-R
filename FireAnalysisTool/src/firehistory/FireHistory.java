@@ -134,6 +134,7 @@ public class FireHistory {
             BufferedReader in = new BufferedReader(new InputStreamReader(fStream));
             String[] nextLine = new String[2];
             while (in.ready()) {
+                
                 nextLine = in.readLine().split(":");
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Nameofsite") == 0) {
                     name_of_site = nextLine[1];

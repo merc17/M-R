@@ -41,7 +41,7 @@ public class mainFrame extends javax.swing.JFrame {
         pnlNew.removeAll();
         pnlGeneral = new PnlGeneral(this);
         pnlNew.add(pnlGeneral);
-        pnlGeneral.setSize(450, 450);
+        pnlGeneral.setSize(500, 500);
         pnlGeneral.setVisible(true);
         pnlNew.revalidate();
         pnlNew.repaint();
@@ -75,6 +75,8 @@ public class mainFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1000, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         pnlWelcome.setPreferredSize(new java.awt.Dimension(980, 500));
         pnlWelcome.setRequestFocusEnabled(false);
@@ -87,17 +89,17 @@ public class mainFrame extends javax.swing.JFrame {
         pnlWelcome.setLayout(pnlWelcomeLayout);
         pnlWelcomeLayout.setHorizontalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap(452, Short.MAX_VALUE)
+            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                .addGap(282, 282, 282)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113))
+                .addContainerGap(283, Short.MAX_VALUE))
         );
         pnlWelcomeLayout.setVerticalGroup(
             pnlWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlWelcomeLayout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
+            .addGroup(pnlWelcomeLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         tabs.addTab("Welcome", pnlWelcome);
@@ -106,7 +108,7 @@ public class mainFrame extends javax.swing.JFrame {
         pnlNew.setLayout(pnlNewLayout);
         pnlNewLayout.setHorizontalGroup(
             pnlNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 941, Short.MAX_VALUE)
+            .addGap(0, 957, Short.MAX_VALUE)
         );
         pnlNewLayout.setVerticalGroup(
             pnlNewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +121,7 @@ public class mainFrame extends javax.swing.JFrame {
         pnlMain.setLayout(pnlMainLayout);
         pnlMainLayout.setHorizontalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 977, Short.MAX_VALUE)
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
