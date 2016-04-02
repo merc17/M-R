@@ -1123,36 +1123,36 @@ public class PnlEditSiteInfo extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
 public void setFieldValues(FireHistory f){
-    this.txtAreaSampled.setText(f.getArea_sampled());
+    this.txtAreaSampled.setText(f.getAreaSampled());
     this.txtAspect.setText(f.getAspect());
-    this.txtCollectionDate.setText(f.getCollection_date());
+    this.txtCollectionDate.setText(f.getCollectionDate());
     this.txtCollectors.setText(f.getCollectors());
-    this.txtCommonName.setText(f.getCommon_name());
+    this.txtCommonName.setText(f.getCommonName());
     this.txtCountry.setText(f.getCountry());
     this.txtCounty.setText(f.getCounty());
     this.txtCrossdaters.setText(f.getCrossdaters());
-    this.txtHabitatType.setText(f.getHabitat_type());
-    this.txtHighestElev.setText(f.getHighest_elev());
+    this.txtHabitatType.setText(f.getHabitatType());
+    this.txtHighestElev.setText(f.getHighestElev());
     this.txtLatitude.setText(f.getLatitude());
     this.txtLongitude.setText(f.getLongitude());
-    this.txtLowestElev.setText(f.getLowest_elev());
-    this.txtNameOfSite.setText(f.getName_of_site());
-    this.txtNationalForest.setText(f.getName_of_site());
-    this.txtNumSamples.setText(f.getNumber_samples());
-    this.txtParkMonument.setText(f.getPark_monument());
-    this.txtQuarterSection.setText(f.getQuarter_section());
+    this.txtLowestElev.setText(f.getLowestElev());
+    this.txtNameOfSite.setText(f.getNameOfSite());
+    this.txtNationalForest.setText(f.getNameOfSite());
+    this.txtNumSamples.setText(Integer.toString(f.getNumOfSamples()));
+    this.txtParkMonument.setText(f.getParkMonument());
+    this.txtQuarterSection.setText(f.getQuarterSection());
     this.txtRange.setText(f.getRange());
-    this.txtRangerDistrict.setText(f.getRanger_district());
+    this.txtRangerDistrict.setText(f.getRangerDistrict());
     this.txtSection.setText(f.getSection());
-    this.txtSiteCode.setText(f.getSite_code());
+    this.txtSiteCode.setText(f.getSiteCode());
     this.txtSlope.setText(f.getSlope());
-    this.txtSpeciesName.setText(f.getSpecies_name());
+    this.txtSpeciesName.setText(f.getSpeciesName());
     this.txtState.setText(f.getState());
-    this.txtSubstrateType.setText(f.getSubstrate_type());
-    this.txtTopographicMap.setText(f.getTopographic_map());
+    this.txtSubstrateType.setText(f.getSubstrateType());
+    this.txtTopographicMap.setText(f.getTopographicMap());
     this.txtTownship.setText(f.getTownship());
-    this.txtUTMEasting.setText(f.getUtm_easting());
-    this.txtUTMNorthing.setText(f.getUtm_northing());
+    this.txtUTMEasting.setText(f.getUtmEasting());
+    this.txtUTMNorthing.setText(f.getUtmNorthing());
 }
 
 }

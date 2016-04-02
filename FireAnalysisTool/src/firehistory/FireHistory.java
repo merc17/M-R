@@ -6,6 +6,7 @@
 package firehistory;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Scanner;
@@ -18,46 +19,46 @@ import java.util.logging.Logger;
  */
 public class FireHistory {
 
-    private String file_path;
+    private String filePath;
 
-    private String name_of_site;
-    private String site_code;
-    private String collection_date;
+    private String nameOfSite;
+    private String siteCode;
+    private String collectionDate;
     private String collectors;
     private String crossdaters;
-    private String number_samples;
-    private String species_name;
-    private String common_name;
-    private String habitat_type;
+    private int numOfSamples;
+    private String speciesName;
+    private String commonName;
+    private String habitatType;
     private String country;
     private String state;
     private String county;
-    private String park_monument;
-    private String national_forest;
-    private String ranger_district;
+    private String parkMonument;
+    private String nationalForest;
+    private String rangerDistrict;
     private String township;
     private String range;
     private String section;
-    private String quarter_section;
-    private String utm_easting;
-    private String utm_northing;
+    private String quarterSection;
+    private String utmEasting;
+    private String utmNorthing;
     private String latitude;
     private String longitude;
-    private String topographic_map;
-    private String lowest_elev;
-    private String highest_elev;
+    private String topographicMap;
+    private String lowestElev;
+    private String highestElev;
     private String slope;
     private String aspect;
-    private String area_sampled;
-    private String substrate_type;
+    private String areaSampled;
+    private String substrateType;
     private String comment;
-    
+
     private String fileFormat;
-    
-    private String begin_year;
-    private String end_year;
-    private String number_of_samples;
-    private String id_length;
+
+    private String beginYear;
+    private String endYear = "0";
+    private String numberOfSamples;
+    private String idLength;
 
     private List<Series> series;
 
@@ -65,7 +66,8 @@ public class FireHistory {
      *
      */
     public FireHistory(String filePath) {
-        file_path = filePath;
+        this.filePath = filePath;
+        series = new ArrayList<Series>();
         ReadFile(filePath);
     }
 
@@ -74,50 +76,50 @@ public class FireHistory {
 
     public FireHistory(String begining_year, String ending_year, String numberOfSamples,
             String SampleIDLength, String siteName, String fileName, String folderPath) {
-        begin_year = begining_year;
-        end_year = ending_year;
-        number_of_samples = numberOfSamples;
-        name_of_site = siteName;
-        id_length = SampleIDLength;
-        file_path = folderPath + "/" + fileName;
+        beginYear = begining_year;
+        endYear = ending_year;
+        this.numberOfSamples = numberOfSamples;
+        nameOfSite = siteName;
+        idLength = SampleIDLength;
+        filePath = folderPath + "/" + fileName;
     }
 
     public FireHistory(String filePath, Scanner user_input) {
-        file_path = filePath;//getInput(user_input, "File Name");
-        name_of_site = getInput(user_input, "Name of Site");
-        site_code = getInput(user_input, "Site Code");
-        collection_date = getInput(user_input, "Collection Date");
+        this.filePath = filePath;//getInput(user_input, "File Name");
+        nameOfSite = getInput(user_input, "Name of Site");
+        siteCode = getInput(user_input, "Site Code");
+        collectionDate = getInput(user_input, "Collection Date");
         collectors = getInput(user_input, "Collectors");
         crossdaters = getInput(user_input, "Crossdaters");
-        number_samples = getInput(user_input, "Number Samples");
-        species_name = getInput(user_input, "Species Name");
-        common_name = getInput(user_input, "Common Name");
-        habitat_type = getInput(user_input, "Habitat Type");
+        numOfSamples = Integer.parseInt(getInput(user_input, "Number Samples"));
+        speciesName = getInput(user_input, "Species Name");
+        commonName = getInput(user_input, "Common Name");
+        habitatType = getInput(user_input, "Habitat Type");
         country = getInput(user_input, "Country");
         state = getInput(user_input, "State");
         county = getInput(user_input, "County");
-        park_monument = getInput(user_input, "Park Monument");
-        national_forest = getInput(user_input, "National Forest");
-        ranger_district = getInput(user_input, "Ranger_district");
+        parkMonument = getInput(user_input, "Park Monument");
+        nationalForest = getInput(user_input, "National Forest");
+        rangerDistrict = getInput(user_input, "Ranger_district");
         township = getInput(user_input, "Township");
         range = getInput(user_input, "Range");
         section = getInput(user_input, "Section");
-        quarter_section = getInput(user_input, "Quarter Section");
-        utm_easting = getInput(user_input, "Utm Easting");
+        quarterSection = getInput(user_input, "Quarter Section");
+        utmEasting = getInput(user_input, "Utm Easting");
         latitude = getInput(user_input, "Latitude");
         longitude = getInput(user_input, "Longitude");
-        topographic_map = getInput(user_input, "Topographic Map");
-        lowest_elev = getInput(user_input, "Lowest Elev");
-        highest_elev = getInput(user_input, "Highest Elev");
+        topographicMap = getInput(user_input, "Topographic Map");
+        lowestElev = getInput(user_input, "Lowest Elev");
+        highestElev = getInput(user_input, "Highest Elev");
         slope = getInput(user_input, "Slope");
         aspect = getInput(user_input, "Aspect");
-        area_sampled = getInput(user_input, "Area Sampled");
-        substrate_type = getInput(user_input, "Substrate Type");
+        areaSampled = getInput(user_input, "Area Sampled");
+        substrateType = getInput(user_input, "Substrate Type");
         comment = getInput(user_input, "Comment");
-        begin_year = getInput(user_input, "Begin Year");
-        end_year = getInput(user_input, "End Year");
-        number_of_samples = getInput(user_input, "Number of Samples");
-        id_length = getInput(user_input, "ID Length");
+        beginYear = getInput(user_input, "Begin Year");
+        endYear = getInput(user_input, "End Year");
+        numberOfSamples = getInput(user_input, "Number of Samples");
+        idLength = getInput(user_input, "ID Length");
         //TODO: Save File.
     }
 
@@ -130,8 +132,8 @@ public class FireHistory {
 
     private void ReadFile(String fileName) {
         try {
-            file_path = fileName;
-            FileInputStream fStream = new FileInputStream(file_path);
+            filePath = fileName;
+            FileInputStream fStream = new FileInputStream(filePath);
             BufferedReader in = new BufferedReader(new InputStreamReader(fStream));
             boolean keyValuePairs = true;
             while (in.ready() && keyValuePairs) {
@@ -140,7 +142,7 @@ public class FireHistory {
                     comment = "";
                     String commentLine = in.readLine();
                     while (commentLine.compareTo("End comments ABOVE this line:") != 0) {
-                        comment += "/n" + commentLine;
+                        comment += '\n' + commentLine;
                         commentLine = in.readLine();
                     }
                     keyValuePairs = false;
@@ -148,134 +150,137 @@ public class FireHistory {
                     String[] nextLine = new String[2];
                     nextLine = nextLineStr.split(":");
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Nameofsite") == 0) {
-                        name_of_site = nextLine[1];
+                        nameOfSite = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Sitecode") == 0) {
-                        site_code = nextLine[1];
+                        siteCode = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Collectiondate") == 0) {
-                        collection_date = nextLine[1];
+                        collectionDate = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Collectors") == 0) {
-                        collectors = nextLine[1];
+                        collectors = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Crossdaters") == 0) {
-                        crossdaters = nextLine[1];
+                        crossdaters = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Numbersamples") == 0) {
-                        number_samples = nextLine[1];
+                        numOfSamples = Integer.parseInt(nextLine[1].trim());
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Speciesname") == 0) {
-                        species_name = nextLine[1];
+                        speciesName = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Commonname") == 0) {
-                        common_name = nextLine[1];
+                        commonName = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Habitattype") == 0) {
-                        habitat_type = nextLine[1];
+                        habitatType = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Country") == 0) {
-                        country = nextLine[1];
+                        country = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("State") == 0) {
-                        state = nextLine[1];
+                        state = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("County") == 0) {
-                        county = nextLine[1];
+                        county = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Park/Monument") == 0) {
-                        park_monument = nextLine[1];
+                        parkMonument = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("NationalForest") == 0) {
-                        national_forest = nextLine[1];
+                        nationalForest = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Rangerdistrict") == 0) {
-                        ranger_district = nextLine[1];
+                        rangerDistrict = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Township") == 0) {
-                        township = nextLine[1];
+                        township = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Range") == 0) {
-                        range = nextLine[1];
+                        range = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Section") == 0) {
-                        section = nextLine[1];
+                        section = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Quartersection") == 0) {
-                        quarter_section = nextLine[1];
+                        quarterSection = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("UTMeasting") == 0) {
-                        utm_easting = nextLine[1];
+                        utmEasting = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("UTMnorthing") == 0) {
-                        utm_northing = nextLine[1];
+                        utmNorthing = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Latitude") == 0) {
-                        latitude = nextLine[1];
+                        latitude = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Longitude") == 0) {
-                        longitude = nextLine[1];
+                        longitude = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Topographicmap") == 0) {
-                        topographic_map = nextLine[1];
+                        topographicMap = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Lowestelev") == 0) {
-                        lowest_elev = nextLine[1];
+                        lowestElev = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Highestelev") == 0) {
-                        highest_elev = nextLine[1];
+                        highestElev = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Slope") == 0) {
-                        slope = nextLine[1];
+                        slope = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Aspect") == 0) {
-                        aspect = nextLine[1];
+                        aspect = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Areasampled") == 0) {
-                        area_sampled = nextLine[1];
+                        areaSampled = nextLine[1].trim();
                     }
                     if (nextLine[0].replaceAll("\\s", "").compareTo("Substratetype") == 0) {
-                        substrate_type = nextLine[1];
+                        substrateType = nextLine[1].trim();
                     }
-//                if (nextLine[0].replaceAll("\\s", "").compareTo("Begincomments") == 0) {
-//                    String commentWhole = nextLine[1];
-//                    String commentLine = in.readLine();
-//                    while (commentLine.compareTo("End comments   :") != 0) {
-//                        commentWhole += "/n" + commentLine;
-//                        commentLine = in.readLine();
-//                    }
-//                    comment = commentWhole;
-//
-//                }
-//                    if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-//                        begin_year = nextLine[1];
-//                    }
-//                    if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-//                        number_of_samples = nextLine[1];
-//                    }
-//                    if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-//                        id_length = nextLine[1];
-//                    }
                 }
             }
             //Get the file format
             String line = in.readLine();
-            while(line != ""){
+            while (line.contentEquals("")) {
                 line = in.readLine();
             }
             fileFormat = line;
             // Get the start year, Number of years, and series length.
             line = in.readLine();
-            while(line != ""){
+            while (line.contentEquals("")) {
                 line = in.readLine();
             }
             String[] elements = new String[3];
             elements = line.split(" ");
-            begin_year = elements[0];
-            end_year = Integer.toString(Integer.parseInt(begin_year) + Integer.parseInt(elements[2]));
-            number_of_samples = elements[2];
-            id_length = elements[3];
-            
+            beginYear = elements[0];
+            numberOfSamples = elements[1];
+            idLength = elements[2];
+            //Read in the key ids
+            String idLine = in.readLine();
+            int numIds = idLine.length();
+            for (int i = 0; i < numIds; i++) {
+                Series e = new Series(Integer.parseInt(beginYear));
+                series.add(e);
+            }
+            while (!"".equals(idLine)) {
+                for (int i = 0; i < numIds; i++) {
+                    series.get(i).appendToID(idLine.charAt(i));
+                }
+                idLine = in.readLine();
+            }
+            //Read in the Series
+            String seriesLine = in.readLine();
+            while (!seriesLine.contentEquals("")) {
+                String[] seriesElements = new String[3];
+                seriesElements = seriesLine.split(" ");
+                for (int i = 0; i < numIds; i++) {
+                    series.get(i).appendToRecord(seriesElements[0].charAt(i));
+                }
+                endYear = seriesElements[1].trim();
+                seriesLine = in.readLine();
+            }
         } catch (IOException e) {
             System.out.println("File input error");
         }
@@ -285,40 +290,64 @@ public class FireHistory {
         FileOutputStream outFile;
         PrintStream printer;
         try {
-            outFile = new FileOutputStream(file_path);
+            outFile = new FileOutputStream(filePath);
             printer = new PrintStream(outFile);
-            printer.println("Name of site   : " + name_of_site);
-            printer.println("Site code      : " + site_code);
-            printer.println("Collection date: " + collection_date);
+            printer.println("Name of site   : " + nameOfSite);
+            printer.println("Site code      : " + siteCode);
+            printer.println("Collection date: " + collectionDate);
             printer.println("Collectors     : " + collectors);
             printer.println("Crossdaters    : " + crossdaters);
-            printer.println("Number samples : " + number_samples);
-            printer.println("Species name   : " + species_name);
-            printer.println("Common name    : " + common_name);
-            printer.println("Habitat type   : " + habitat_type);
+            printer.println("Number samples : " + numOfSamples);
+            printer.println("Species name   : " + speciesName);
+            printer.println("Common name    : " + commonName);
+            printer.println("Habitat type   : " + habitatType);
             printer.println("Country        : " + country);
             printer.println("State          : " + state);
             printer.println("County         : " + county);
-            printer.println("Park/Monument  : " + park_monument);
-            printer.println("National Forest: " + national_forest);
-            printer.println("Ranger district: " + ranger_district);
+            printer.println("Park/Monument  : " + parkMonument);
+            printer.println("National Forest: " + nationalForest);
+            printer.println("Ranger district: " + rangerDistrict);
             printer.println("Township       : " + township);
             printer.println("Range          : " + range);
             printer.println("Section        : " + section);
-            printer.println("Quarter section: " + quarter_section);
-            printer.println("UTM easting    : " + utm_easting);
-            printer.println("UTM northing   : " + utm_northing);
+            printer.println("Quarter section: " + quarterSection);
+            printer.println("UTM easting    : " + utmEasting);
+            printer.println("UTM northing   : " + utmNorthing);
             printer.println("Latitude       : " + latitude);
             printer.println("Longitude      : " + longitude);
-            printer.println("Topographic map: " + topographic_map);
-            printer.println("Lowest elev    : " + lowest_elev);
-            printer.println("Highest elev   : " + highest_elev);
+            printer.println("Topographic map: " + topographicMap);
+            printer.println("Lowest elev    : " + lowestElev);
+            printer.println("Highest elev   : " + highestElev);
             printer.println("Slope          : " + slope);
             printer.println("Aspect         : " + aspect);
-            printer.println("Area sampled   : " + area_sampled);
-            printer.println("Substrate type : " + substrate_type);
-            printer.println("Begin comments : " + comment);
-            printer.println("End comments   :");
+            printer.println("Area sampled   : " + areaSampled);
+            printer.println("Substrate type : " + substrateType);
+            printer.print("Begin comments BELOW this line:");
+            printer.println(comment);
+            printer.println("End comments ABOVE this line:");
+            printer.println("");
+            printer.println(fileFormat);
+            printer.println(beginYear + " " + numberOfSamples + " " + idLength);
+
+            int keyLength = Integer.parseInt(idLength);
+            for (int i = 0; i < keyLength; i++) {
+                for (int index = 0; index < series.size(); index++) {
+                    printer.print(series.get(index).getIdCharAt(i));
+                }
+                printer.println();
+            }
+            printer.println();
+            int numSeries = series.size();
+            int year = Integer.parseInt(beginYear);
+            int _endYear = Integer.parseInt(endYear) - year;
+            for (int i = 0; i <= _endYear; i++) {
+                for (int index = 0; index < series.size(); index++) {
+                    printer.print(series.get(index).getRedordCharAt(i));
+                }
+                printer.print(" " + year + '\n');
+                year++;
+            }
+            printer.println();
             printer.close();
 
         } catch (FileNotFoundException ex) {
@@ -332,20 +361,20 @@ public class FireHistory {
      */
     public void OpenFile(String fileName) {
         try {
-            file_path = fileName;
-            FileInputStream fStream = new FileInputStream(file_path);
+            filePath = fileName;
+            FileInputStream fStream = new FileInputStream(filePath);
             BufferedReader in = new BufferedReader(new InputStreamReader(fStream));
             String[] nextLine = new String[2];
             while (in.ready()) {
                 nextLine = in.readLine().split(":");
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Nameofsite") == 0) {
-                    name_of_site = nextLine[1].trim();
+                    nameOfSite = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Sitecode") == 0) {
-                    site_code = nextLine[1].trim();
+                    siteCode = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Collectiondate") == 0) {
-                    collection_date = nextLine[1].trim();
+                    collectionDate = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Collectors") == 0) {
                     collectors = nextLine[1].trim();
@@ -354,16 +383,16 @@ public class FireHistory {
                     crossdaters = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Numbersamples") == 0) {
-                    number_samples = nextLine[1].trim();
+                    numOfSamples = Integer.parseInt(nextLine[1].trim());
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Speciesname") == 0) {
-                    species_name = nextLine[1].trim();
+                    speciesName = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Commonname") == 0) {
-                    common_name = nextLine[1].trim();
+                    commonName = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Habitattype") == 0) {
-                    habitat_type = nextLine[1].trim();
+                    habitatType = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Country") == 0) {
                     country = nextLine[1].trim();
@@ -375,13 +404,13 @@ public class FireHistory {
                     county = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Park/Monument") == 0) {
-                    park_monument = nextLine[1].trim();
+                    parkMonument = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("NationalForest") == 0) {
-                    national_forest = nextLine[1].trim();
+                    nationalForest = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Rangerdistrict") == 0) {
-                    ranger_district = nextLine[1].trim();
+                    rangerDistrict = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Township") == 0) {
                     township = nextLine[1].trim();
@@ -393,13 +422,13 @@ public class FireHistory {
                     section = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Quartersection") == 0) {
-                    quarter_section = nextLine[1].trim();
+                    quarterSection = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("UTMeasting") == 0) {
-                    utm_easting = nextLine[1].trim();
+                    utmEasting = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("UTMnorthing") == 0) {
-                    utm_northing = nextLine[1].trim();
+                    utmNorthing = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Latitude") == 0) {
                     latitude = nextLine[1].trim();
@@ -408,13 +437,13 @@ public class FireHistory {
                     longitude = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Topographicmap") == 0) {
-                    topographic_map = nextLine[1].trim();
+                    topographicMap = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Lowestelev") == 0) {
-                    lowest_elev = nextLine[1].trim();
+                    lowestElev = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Highestelev") == 0) {
-                    highest_elev = nextLine[1].trim();
+                    highestElev = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Slope") == 0) {
                     slope = nextLine[1].trim();
@@ -423,10 +452,10 @@ public class FireHistory {
                     aspect = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Areasampled") == 0) {
-                    area_sampled = nextLine[1].trim();
+                    areaSampled = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Substratetype") == 0) {
-                    substrate_type = nextLine[1].trim();
+                    substrateType = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Begincomments") == 0) {
                     String commentWhole = nextLine[1].trim();
@@ -439,13 +468,13 @@ public class FireHistory {
 
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-                    begin_year = nextLine[1].trim();
+                    beginYear = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-                    number_of_samples = nextLine[1].trim();
+                    numberOfSamples = nextLine[1].trim();
                 }
                 if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-                    id_length = nextLine[1].trim();
+                    idLength = nextLine[1].trim();
                 }
 
             }
@@ -457,35 +486,35 @@ public class FireHistory {
     }
 
     public String getFile_path() {
-        return file_path;
+        return filePath;
     }
 
     public void setFile_path(String file_path) {
-        this.file_path = file_path;
+        this.filePath = file_path;
     }
 
-    public String getName_of_site() {
-        return name_of_site;
+    public String getNameOfSite() {
+        return nameOfSite;
     }
 
-    public void setName_of_site(String name_of_site) {
-        this.name_of_site = name_of_site;
+    public void setNameOfSite(String nameOfSite) {
+        this.nameOfSite = nameOfSite;
     }
 
-    public String getSite_code() {
-        return site_code;
+    public String getSiteCode() {
+        return siteCode;
     }
 
-    public void setSite_code(String site_code) {
-        this.site_code = site_code;
+    public void setSiteCode(String siteCode) {
+        this.siteCode = siteCode;
     }
 
-    public String getCollection_date() {
-        return collection_date;
+    public String getCollectionDate() {
+        return collectionDate;
     }
 
-    public void setCollection_date(String collection_date) {
-        this.collection_date = collection_date;
+    public void setCollectionDate(String collectionDate) {
+        this.collectionDate = collectionDate;
     }
 
     public String getCollectors() {
@@ -504,36 +533,36 @@ public class FireHistory {
         this.crossdaters = crossdaters;
     }
 
-    public String getNumber_samples() {
-        return number_samples;
+    public int getNumOfSamples() {
+        return numOfSamples;
     }
 
-    public void setNumber_samples(String number_samples) {
-        this.number_samples = number_samples;
+    public void setNumOfSamples(int number_samples) {
+        this.numOfSamples = number_samples;
     }
 
-    public String getSpecies_name() {
-        return species_name;
+    public String getSpeciesName() {
+        return speciesName;
     }
 
-    public void setSpecies_name(String species_name) {
-        this.species_name = species_name;
+    public void setSpeciesName(String speciesName) {
+        this.speciesName = speciesName;
     }
 
-    public String getCommon_name() {
-        return common_name;
+    public String getCommonName() {
+        return commonName;
     }
 
-    public void setCommon_name(String common_name) {
-        this.common_name = common_name;
+    public void setCommonName(String commonName) {
+        this.commonName = commonName;
     }
 
-    public String getHabitat_type() {
-        return habitat_type;
+    public String getHabitatType() {
+        return habitatType;
     }
 
-    public void setHabitat_type(String habitat_type) {
-        this.habitat_type = habitat_type;
+    public void setHabitatType(String habitatType) {
+        this.habitatType = habitatType;
     }
 
     public String getCountry() {
@@ -560,28 +589,28 @@ public class FireHistory {
         this.county = county;
     }
 
-    public String getPark_monument() {
-        return park_monument;
+    public String getParkMonument() {
+        return parkMonument;
     }
 
-    public void setPark_monument(String park_monument) {
-        this.park_monument = park_monument;
+    public void setParkMonument(String parkMonument) {
+        this.parkMonument = parkMonument;
     }
 
-    public String getNational_forest() {
-        return national_forest;
+    public String getNationalForest() {
+        return nationalForest;
     }
 
-    public void setNational_forest(String national_forest) {
-        this.national_forest = national_forest;
+    public void setNationalForest(String nationalForest) {
+        this.nationalForest = nationalForest;
     }
 
-    public String getRanger_district() {
-        return ranger_district;
+    public String getRangerDistrict() {
+        return rangerDistrict;
     }
 
-    public void setRanger_district(String ranger_district) {
-        this.ranger_district = ranger_district;
+    public void setRangerDistrict(String rangerDistrict) {
+        this.rangerDistrict = rangerDistrict;
     }
 
     public String getTownship() {
@@ -608,28 +637,28 @@ public class FireHistory {
         this.section = section;
     }
 
-    public String getQuarter_section() {
-        return quarter_section;
+    public String getQuarterSection() {
+        return quarterSection;
     }
 
-    public void setQuarter_section(String quarter_section) {
-        this.quarter_section = quarter_section;
+    public void setQuarterSection(String quarterSection) {
+        this.quarterSection = quarterSection;
     }
 
-    public String getUtm_easting() {
-        return utm_easting;
+    public String getUtmEasting() {
+        return utmEasting;
     }
 
-    public void setUtm_easting(String utm_easting) {
-        this.utm_easting = utm_easting;
+    public void setUtmEasting(String utmEasting) {
+        this.utmEasting = utmEasting;
     }
 
-    public String getUtm_northing() {
-        return utm_northing;
+    public String getUtmNorthing() {
+        return utmNorthing;
     }
 
-    public void setUtm_northing(String utm_northing) {
-        this.utm_northing = utm_northing;
+    public void setUtmNorthing(String utmNorthing) {
+        this.utmNorthing = utmNorthing;
     }
 
     public String getLatitude() {
@@ -648,28 +677,28 @@ public class FireHistory {
         this.longitude = longitude;
     }
 
-    public String getTopographic_map() {
-        return topographic_map;
+    public String getTopographicMap() {
+        return topographicMap;
     }
 
-    public void setTopographic_map(String topographic_map) {
-        this.topographic_map = topographic_map;
+    public void setTopographicMap(String topographicMap) {
+        this.topographicMap = topographicMap;
     }
 
-    public String getLowest_elev() {
-        return lowest_elev;
+    public String getLowestElev() {
+        return lowestElev;
     }
 
-    public void setLowest_elev(String lowest_elev) {
-        this.lowest_elev = lowest_elev;
+    public void setLowestElev(String lowestElev) {
+        this.lowestElev = lowestElev;
     }
 
-    public String getHighest_elev() {
-        return highest_elev;
+    public String getHighestElev() {
+        return highestElev;
     }
 
-    public void setHighest_elev(String highest_elev) {
-        this.highest_elev = highest_elev;
+    public void setHighestElev(String highestElev) {
+        this.highestElev = highestElev;
     }
 
     public String getSlope() {
@@ -688,20 +717,20 @@ public class FireHistory {
         this.aspect = aspect;
     }
 
-    public String getArea_sampled() {
-        return area_sampled;
+    public String getAreaSampled() {
+        return areaSampled;
     }
 
-    public void setArea_sampled(String area_sampled) {
-        this.area_sampled = area_sampled;
+    public void setAreaSampled(String areaSampled) {
+        this.areaSampled = areaSampled;
     }
 
-    public String getSubstrate_type() {
-        return substrate_type;
+    public String getSubstrateType() {
+        return substrateType;
     }
 
-    public void setSubstrate_type(String substrate_type) {
-        this.substrate_type = substrate_type;
+    public void setSubstrateType(String substrateType) {
+        this.substrateType = substrateType;
     }
 
     public String getComment() {
@@ -712,36 +741,36 @@ public class FireHistory {
         this.comment = comment;
     }
 
-    public String getBegin_year() {
-        return begin_year;
+    public String getBeginYear() {
+        return beginYear;
     }
 
-    public void setBegin_year(String begin_year) {
-        this.begin_year = begin_year;
+    public void setBeginYear(String beginYear) {
+        this.beginYear = beginYear;
     }
 
-    public String getEnd_year() {
-        return end_year;
+    public String getEndYear() {
+        return endYear;
     }
 
-    public void setEnd_year(String end_year) {
-        this.end_year = end_year;
+    public void setEndYear(String endYear) {
+        this.endYear = endYear;
     }
 
-    public String getNumber_of_samples() {
-        return number_of_samples;
+    public String getNumberOfSamples() {
+        return numberOfSamples;
     }
 
-    public void setNumber_of_samples(String number_of_samples) {
-        this.number_of_samples = number_of_samples;
+    public void setNumberOfSamples(String numberOfSamples) {
+        this.numberOfSamples = numberOfSamples;
     }
 
-    public String getId_length() {
-        return id_length;
+    public String getIdLength() {
+        return idLength;
     }
 
-    public void setId_length(String id_length) {
-        this.id_length = id_length;
+    public void setIdLength(String idLength) {
+        this.idLength = idLength;
     }
 
 }

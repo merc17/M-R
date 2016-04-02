@@ -5,6 +5,7 @@
  */
 package firehistory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,10 +14,27 @@ import java.util.List;
  */
 public class Series {
 
-    private String series_id;
+    private String seriesID;
+    private int startYear;
     private List<Character> record;
 
-    public Series() {
-
+    public Series(int startYear) {
+        seriesID = "";
+        this.startYear = startYear;
+        record = new ArrayList<Character>();
+    }
+    
+    public void appendToID(char ch) {
+        seriesID += ch;
+    }
+    public void appendToRecord(char ch) {
+        record.add(ch);
+    }
+    
+    public char getIdCharAt(int index){
+        return seriesID.charAt(index);
+    }
+    public char getRedordCharAt(int index){
+        return record.get(index);
     }
 }

@@ -25,7 +25,7 @@ public class PnlEditSitesData extends javax.swing.JPanel {
 
         initComponents();
         Series s;
-        s = new Series();
+        s = new Series(Integer.parseInt(f.getBeginYear()));
 
         //String tmp =f.getName_of_site();
         setFieldValues(f);
@@ -381,13 +381,13 @@ public class PnlEditSitesData extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void setFieldValues(FireHistory f) {
-        this.lblSiteName.setText(f.getName_of_site());
-        this.lblSiteCode.setText(f.getSite_code());
-        this.lblCollectionDate.setText(f.getCollection_date());
+        this.lblSiteName.setText(f.getNameOfSite());
+        this.lblSiteCode.setText(f.getSiteCode());
+        this.lblCollectionDate.setText(f.getCollectionDate());
         this.lblCollectors.setText(f.getCollectors());
         this.lblCountry.setText(f.getCountry());
         this.lblCounty.setText(f.getCounty());
-        this.lblNumSamples.setText(f.getNumber_of_samples());
+        this.lblNumSamples.setText(f.getNumberOfSamples());
         this.lblState.setText(f.getState());
     }
 }

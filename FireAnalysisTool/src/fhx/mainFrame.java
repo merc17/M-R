@@ -309,7 +309,7 @@ public class mainFrame extends javax.swing.JFrame {
     public void addFireHistoryTab(FireHistory fireHistory){
         tabs.remove(indexOfNewTab);
         PnlFile tmp = new PnlFile(fireHistory);
-        tabs.addTab(fireHistory.getName_of_site(), tmp);
+        tabs.addTab(fireHistory.getNameOfSite(), tmp);
         tabs.add("New", pnlNew);
         indexOfNewTab++;
         tabs.setSelectedIndex(indexOfNewTab);
