@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class FireHistory {
 
     private String file_path;
-    
+
     private String name_of_site;
     private String site_code;
     private String collection_date;
@@ -51,7 +51,9 @@ public class FireHistory {
     private String area_sampled;
     private String substrate_type;
     private String comment;
-
+    
+    private String fileFormat;
+    
     private String begin_year;
     private String end_year;
     private String number_of_samples;
@@ -66,11 +68,11 @@ public class FireHistory {
         file_path = filePath;
         ReadFile(filePath);
     }
-    
+
     public FireHistory() {
     }
-    
-    public FireHistory(String begining_year, String ending_year, String numberOfSamples, 
+
+    public FireHistory(String begining_year, String ending_year, String numberOfSamples,
             String SampleIDLength, String siteName, String fileName, String folderPath) {
         begin_year = begining_year;
         end_year = ending_year;
@@ -79,7 +81,6 @@ public class FireHistory {
         id_length = SampleIDLength;
         file_path = folderPath + "/" + fileName;
     }
-
 
     public FireHistory(String filePath, Scanner user_input) {
         file_path = filePath;//getInput(user_input, "File Name");
@@ -132,121 +133,149 @@ public class FireHistory {
             file_path = fileName;
             FileInputStream fStream = new FileInputStream(file_path);
             BufferedReader in = new BufferedReader(new InputStreamReader(fStream));
-            String[] nextLine = new String[2];
-            while (in.ready()) {
-                
-                nextLine = in.readLine().split(":");
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Nameofsite") == 0) {
-                    name_of_site = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Sitecode") == 0) {
-                    site_code = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Collectiondate") == 0) {
-                    collection_date = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Collectors") == 0) {
-                    collectors = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Crossdaters") == 0) {
-                    crossdaters = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Numbersamples") == 0) {
-                    number_samples = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Speciesname") == 0) {
-                    species_name = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Commonname") == 0) {
-                    common_name = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Habitattype") == 0) {
-                    habitat_type = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Country") == 0) {
-                    country = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("State") == 0) {
-                    state = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("County") == 0) {
-                    county = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Park/Monument") == 0) {
-                    park_monument = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("NationalForest") == 0) {
-                    national_forest = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Rangerdistrict") == 0) {
-                    ranger_district = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Township") == 0) {
-                    township = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Range") == 0) {
-                    range = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Section") == 0) {
-                    section = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Quartersection") == 0) {
-                    quarter_section = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("UTMeasting") == 0) {
-                    utm_easting = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("UTMnorthing") == 0) {
-                    utm_northing = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Latitude") == 0) {
-                    latitude = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Longitude") == 0) {
-                    longitude = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Topographicmap") == 0) {
-                    topographic_map = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Lowestelev") == 0) {
-                    lowest_elev = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Highestelev") == 0) {
-                    highest_elev = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Slope") == 0) {
-                    slope = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Aspect") == 0) {
-                    aspect = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Areasampled") == 0) {
-                    area_sampled = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Substratetype") == 0) {
-                    substrate_type = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Begincomments") == 0) {
-                    String commentWhole = nextLine[1];
+            boolean keyValuePairs = true;
+            while (in.ready() && keyValuePairs) {
+                String nextLineStr = in.readLine();
+                if (nextLineStr.compareTo("Begin comments BELOW this line:") == 0) {
+                    comment = "";
                     String commentLine = in.readLine();
-                    while (commentLine.compareTo("End comments   :") != 0) {
-                        commentWhole += "/n" + commentLine;
+                    while (commentLine.compareTo("End comments ABOVE this line:") != 0) {
+                        comment += "/n" + commentLine;
                         commentLine = in.readLine();
                     }
-                    comment = commentWhole;
-
+                    keyValuePairs = false;
+                } else {
+                    String[] nextLine = new String[2];
+                    nextLine = nextLineStr.split(":");
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Nameofsite") == 0) {
+                        name_of_site = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Sitecode") == 0) {
+                        site_code = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Collectiondate") == 0) {
+                        collection_date = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Collectors") == 0) {
+                        collectors = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Crossdaters") == 0) {
+                        crossdaters = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Numbersamples") == 0) {
+                        number_samples = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Speciesname") == 0) {
+                        species_name = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Commonname") == 0) {
+                        common_name = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Habitattype") == 0) {
+                        habitat_type = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Country") == 0) {
+                        country = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("State") == 0) {
+                        state = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("County") == 0) {
+                        county = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Park/Monument") == 0) {
+                        park_monument = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("NationalForest") == 0) {
+                        national_forest = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Rangerdistrict") == 0) {
+                        ranger_district = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Township") == 0) {
+                        township = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Range") == 0) {
+                        range = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Section") == 0) {
+                        section = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Quartersection") == 0) {
+                        quarter_section = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("UTMeasting") == 0) {
+                        utm_easting = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("UTMnorthing") == 0) {
+                        utm_northing = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Latitude") == 0) {
+                        latitude = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Longitude") == 0) {
+                        longitude = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Topographicmap") == 0) {
+                        topographic_map = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Lowestelev") == 0) {
+                        lowest_elev = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Highestelev") == 0) {
+                        highest_elev = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Slope") == 0) {
+                        slope = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Aspect") == 0) {
+                        aspect = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Areasampled") == 0) {
+                        area_sampled = nextLine[1];
+                    }
+                    if (nextLine[0].replaceAll("\\s", "").compareTo("Substratetype") == 0) {
+                        substrate_type = nextLine[1];
+                    }
+//                if (nextLine[0].replaceAll("\\s", "").compareTo("Begincomments") == 0) {
+//                    String commentWhole = nextLine[1];
+//                    String commentLine = in.readLine();
+//                    while (commentLine.compareTo("End comments   :") != 0) {
+//                        commentWhole += "/n" + commentLine;
+//                        commentLine = in.readLine();
+//                    }
+//                    comment = commentWhole;
+//
+//                }
+//                    if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
+//                        begin_year = nextLine[1];
+//                    }
+//                    if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
+//                        number_of_samples = nextLine[1];
+//                    }
+//                    if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
+//                        id_length = nextLine[1];
+//                    }
                 }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-                    begin_year = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-                    number_of_samples = nextLine[1];
-                }
-                if (nextLine[0].replaceAll("\\s", "").compareTo("Name of site") == 0) {
-                    id_length = nextLine[1];
-                }
-
             }
+            //Get the file format
+            String line = in.readLine();
+            while(line != ""){
+                line = in.readLine();
+            }
+            fileFormat = line;
+            // Get the start year, Number of years, and series length.
+            line = in.readLine();
+            while(line != ""){
+                line = in.readLine();
+            }
+            String[] elements = new String[3];
+            elements = line.split(" ");
+            begin_year = elements[0];
+            end_year = Integer.toString(Integer.parseInt(begin_year) + Integer.parseInt(elements[2]));
+            number_of_samples = elements[2];
+            id_length = elements[3];
+            
         } catch (IOException e) {
             System.out.println("File input error");
         }
@@ -426,7 +455,7 @@ public class FireHistory {
         System.out.println("Ran succsess!");
 
     }
-    
+
     public String getFile_path() {
         return file_path;
     }
@@ -714,7 +743,5 @@ public class FireHistory {
     public void setId_length(String id_length) {
         this.id_length = id_length;
     }
-    
-    
-    
+
 }
